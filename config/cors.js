@@ -22,7 +22,7 @@
  *  }
  *
  *  For more information on this configuration file, see:
- *  http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.cors.html
+ *  http://sailsjs.org/#/documentation/reference/sails.config/sails.config.cors.html
  *
  */
 
@@ -37,7 +37,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  // allRoutes: false,
+  allRoutes: true,
 
   /***************************************************************************
   *                                                                          *
@@ -55,7 +55,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  credentials: true,
+  // credentials: true,
 
   /***************************************************************************
   *                                                                          *
@@ -64,7 +64,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  // methods: 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
+  methods: 'GET, POST',
 
   /***************************************************************************
   *                                                                          *
@@ -73,6 +73,6 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  // headers: 'content-type'
+  headers: 'content-type, Authorization'
 
 };
