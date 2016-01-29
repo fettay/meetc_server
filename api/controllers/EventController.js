@@ -21,28 +21,33 @@ module.exports = {
 				return res.status(400).end()
 			}
 			else{
-				Event_status.create({'user_id': req.param('user_id'), 'event_id': event_.id, 'status': 1});
-				array_part = [];
+				Event_status.create({'user_id': req.param('user_id'), 'event_id': event_.id, 'status': 1},function(err){
 
-				if(req.param('participants').length == 0)
-					return res.status(200).json(event_);
+					if(err)
+						return res.status(400).end()
 
-				_.each(req.param('participants'), function(parti, index){
-					console.log(index);
-					var obj = {};
-					obj.user_id = parti;
-					obj.status = 0;
-					obj.event_id = event_.id;
-					array_part.push(obj);
-					if(index == req.param('participants').length - 1) {
-						Event_status.create(array_part, function(err, data){
-							if(err)
-								return res.status(400).end();
-							else
-								return res.status(200).json(event_);
-						});
+					array_part = [];
 
-					}
+					if(req.param('participants').length == 0)
+						return res.status(200).json(event_);
+
+					_.each(req.param('participants'), function(parti, index){
+						console.log(index);
+						var obj = {};
+						obj.user_id = parti;
+						obj.status = 0;
+						obj.event_id = event_.id;
+						array_part.push(obj);
+						if(index == req.param('participants').length - 1) {
+							Event_status.create(array_part, function(err, data){
+								if(err)
+									return res.status(400).end();
+								else
+									return res.status(200).json(event_);
+							});
+
+						}
+					});
 				});
 			}
 		});
