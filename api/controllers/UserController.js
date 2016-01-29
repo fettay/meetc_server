@@ -11,8 +11,10 @@ module.exports = {
 		val = req.params.all();
 		delete val.id;
 		User.findOne({facebook_id: req.param('facebook_id')}, function(err, user){
-			if(err)
+			if(err){
+				console.log(err);
 				return res.status(400).end();
+			}
 			
 			if(user)
 				return res.status(200).json(user);
