@@ -15,7 +15,7 @@ module.exports = {
   		autoIncrement: true
   	},
   	facebook_id: {
-  		type: 'int',
+  		type: 'string',
   		required: true
   	},
   	name: {

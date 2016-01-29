@@ -61,6 +61,22 @@ module.exports = {
 			else
 				return res.status(200).json(event_[0])
 		});
+	},
+
+	get_user: function(req, res) {
+		Event_status.find({'event_id':req.param('event_id')}, function(err, event_st){
+			if(err)
+				return res.status(400).end();
+			else{
+				users_ids = _.pluck(event_st, 'user_id');
+				User.find(users_ids, function(err, users) {
+				if(err)
+					return res.status(400).end();
+				else
+					return res.status(200).json(users);
+				});
+			}
+		});
 	}
 	
 };

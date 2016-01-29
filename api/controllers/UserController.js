@@ -52,11 +52,18 @@ module.exports = {
 	},
 
 	get_event: function(req, res) {
-		Event.find({'user_id':req.param('user_id')}, function(err, events){
+		Event_status.find({'user_id':req.param('user_id')}, function(err, event_st){
 			if(err)
 				return res.status(400).end();
-			else
-				return res.status(200).json(events);
+			else{
+				events_ids = _.pluck(event_st, 'event_id');
+				Event.find(events_ids, function(err, events) {
+				if(err)
+					return res.status(400).end();
+				else
+					return res.status(200).json(events);
+				});
+			}
 		});
 	}
 };
