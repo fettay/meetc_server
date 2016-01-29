@@ -68,8 +68,8 @@ module.exports = {
 		});
 	},
 
-	get_user: function(req, res) {
-		Event_status.find({'event_id':req.param('event_id'), 'status': 1}, function(err, event_st){
+	get_gens: function(req, res) {
+		Event_status.find({'event_id':parseInt(req.param('id')), 'status': 1}, function(err, event_st){
 			if(err)
 				return res.status(400).end();
 			else{

@@ -34,7 +34,9 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+
+  'GET /event/get_gens/:event_id': 'EventController.get_gens'
 
   /***************************************************************************
   *                                                                          *
