@@ -10,13 +10,24 @@ module.exports = {
 	create: function(req, res) {
 		val = req.params.all();
 		delete val.id;
-		User.create(val, function(err, user){
-			if(err){
-				console.log(err);
+		User.findOne({facebook_id: req.param('facebook_id')}, function(err, user){
+			if(err)
 				return res.status(400).end();
-			}
-			else
+			
+			if(user)
 				return res.status(200).json(user);
+
+			else{
+
+				User.create(val, function(err, user){
+					if(err){
+						console.log(err);
+						return res.status(400).end();
+					}
+					else
+						return res.status(200).json(user);
+				});
+			}
 		});
 	},
 
