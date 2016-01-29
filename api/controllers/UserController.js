@@ -43,7 +43,7 @@ module.exports = {
 	},
 
 	get: function(req, res) {
-		User.find(req.param('user_id'), function(err, user){
+		User.findOne(req.param('user_id'), function(err, user){
 			if(err)
 				return res.status(400).end();
 			if(!user)

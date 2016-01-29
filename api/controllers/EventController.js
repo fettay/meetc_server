@@ -53,6 +53,17 @@ module.exports = {
 		});
 	},
 
+	get: function(req, res) {
+		Event.findOne(req.param('event_id'), function(err, event_){
+			if(err)
+				return res.status(400).end();
+			if(!event_)
+				return res.status(200).json({error: 'Event not found'});
+			else
+				return res.status(200).json(event_);	
+		});
+	},
+
 	update: function(req, res) {
 		if(!req.param('event_id') || !req.param('user_id')){
 			return res.status(400).end();
